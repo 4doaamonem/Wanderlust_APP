@@ -13,9 +13,9 @@ export class PopularPlacesService {
         photo: 'https://example.com/pyramids-giza.jpg'
       },
       {
-        name: 'Luxor Temple',
-        description: 'Ancient Egyptian temple complex on the east bank of the Nile',
-        photo: 'https://example.com/luxor-temple.jpg'
+        name: 'Grand Egyptian Museum',
+        description: 'The largest archaeological museum in the world, dedicated to ancient Egyptian civilization',
+        photo: 'https://images.unsplash.com/photo-1707324317188-66179db4a3ca?q=80&w=600&auto=format&fit=crop' 
       },
       {
         name: 'Abu Simbel Temples',

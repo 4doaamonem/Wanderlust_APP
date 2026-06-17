@@ -11,7 +11,7 @@ export class HotelsService {
         name: 'Four Seasons Hotel Cairo',
         stars: 5,
         location: 'Nile Corniche, Cairo',
-        priceRange: 'Premium',
+        priceRange: 3,
         photo: 'https://example.com/four-seasons-cairo.jpg',
         socialMediaLink: 'https://facebook.com/fourseasonscairo'
       },
@@ -19,7 +19,7 @@ export class HotelsService {
         name: 'The Nile Ritz-Carlton',
         stars: 5,
         location: 'Nile Corniche, Cairo',
-        priceRange: 'Premium',
+        priceRange: 2,
         photo: 'https://example.com/nile-ritz-carlton.jpg',
         socialMediaLink: 'https://facebook.com/nileritzcarlton'
       },
@@ -27,7 +27,7 @@ export class HotelsService {
         name: 'Marriott Mena House',
         stars: 5,
         location: 'Pyramids Road, Giza',
-        priceRange: 'Premium',
+        priceRange: 1,
         photo: 'https://example.com/marriott-mena-house.jpg',
         socialMediaLink: 'https://facebook.com/marriottmenahouse'
       }
@@ -37,7 +37,7 @@ export class HotelsService {
         name: 'Four Seasons Hotel George V',
         stars: 5,
         location: 'Champs-Élysées, Paris',
-        priceRange: 'Premium',
+        priceRange: 3,
         photo: 'https://example.com/four-seasons-george-v.jpg',
         socialMediaLink: 'https://facebook.com/fourseasonsgeorgev'
       },
@@ -45,7 +45,7 @@ export class HotelsService {
         name: 'Le Meurice',
         stars: 5,
         location: 'Rue de Rivoli, Paris',
-        priceRange: 'Premium',
+        priceRange: 2,
         photo: 'https://example.com/le-meurice.jpg',
         socialMediaLink: 'https://facebook.com/lemeurice'
       },
@@ -53,7 +53,7 @@ export class HotelsService {
         name: 'Hotel Plaza Athénée',
         stars: 5,
         location: 'Avenue Montaigne, Paris',
-        priceRange: 'Premium',
+        priceRange: 1,
         photo: 'https://example.com/plaza-athenee.jpg',
         socialMediaLink: 'https://facebook.com/hotelplazaathenee'
       }
@@ -63,7 +63,7 @@ export class HotelsService {
         name: 'Four Seasons Hotel Istanbul',
         stars: 5,
         location: 'Bosphorus, Istanbul',
-        priceRange: 'Premium',
+        priceRange: 3,
         photo: 'https://example.com/four-seasons-istanbul.jpg',
         socialMediaLink: 'https://facebook.com/fourseasonsistanbul'
       },
@@ -71,7 +71,7 @@ export class HotelsService {
         name: 'Çırağan Palace Kempinski',
         stars: 5,
         location: 'Bosphorus, Istanbul',
-        priceRange: 'Premium',
+        priceRange: 2,
         photo: 'https://example.com/ciragan-palace.jpg',
         socialMediaLink: 'https://facebook.com/ciraganpalace'
       },
@@ -79,7 +79,7 @@ export class HotelsService {
         name: 'Swissôtel The Bosphorus',
         stars: 5,
         location: 'Maçka, Istanbul',
-        priceRange: 'Premium',
+        priceRange: 1,
         photo: 'https://example.com/swissotel-bosphorus.jpg',
         socialMediaLink: 'https://facebook.com/swissotelbosphorus'
       }
