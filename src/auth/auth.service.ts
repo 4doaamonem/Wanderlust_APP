@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, ConflictException, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
@@ -17,11 +17,11 @@ export class AuthService {
   ) {}
 
   async signup(signupDto: SignupDto): Promise<AuthResponseDto> {
-    const { name, email, password, confirmPassword } = signupDto;
+    const { firstName, lastName, email, password, confirmPassword } = signupDto;
 
-    // Check if passwords match
+    // 1. الأصح هنا BadRequestException لأنها غلطة مدخلات من المستخدم
     if (password !== confirmPassword) {
-      throw new ConflictException('Passwords do not match');
+      throw new BadRequestException('Passwords do not match');
     }
 
     // Check if user already exists
@@ -35,7 +35,7 @@ export class AuthService {
 
     // Create user
     const user = this.userRepository.create({
-      name,
+      name: `${firstName} ${lastName}`.trim(), // عملت trim عشان لو فيه مسافات زيادة تتشال
       email,
       password: hashedPassword,
     });
@@ -52,7 +52,7 @@ export class AuthService {
       accessToken: token,
       user: {
         id: savedUser.id,
-        name: savedUser.name,
+        name: savedUser.name, // شلت الـ string interpolation الملوش لازمة `${}` لأنها أصلاً string
         email: savedUser.email,
         isPremium: savedUser.isPremium,
       },
@@ -84,7 +84,7 @@ export class AuthService {
       accessToken: token,
       user: {
         id: user.id,
-        name: user.name,
+        name: user.name, 
         email: user.email,
         isPremium: user.isPremium,
       },
