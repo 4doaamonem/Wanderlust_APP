@@ -1,15 +1,8 @@
-import { Controller, Get, Query, Param, HttpException, HttpStatus } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiProperty } from '@nestjs/swagger';
+import { Controller, Get, Param } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { CountriesService } from '../services/countries.service';
-
-// Simple DTO class for country response
-class CountryResponseDto {
-  @ApiProperty({ example: 'Egypt' })
-  countryName: string;
-
-  @ApiProperty({ example: 'EG' })
-  countryCode: string;
-}
+import { CountryDto } from '../dtos/country.dto';
+import type { CountryData } from '../interfaces/country.interface';
 
 @ApiTags('countries')
 @Controller('countries')
@@ -17,66 +10,32 @@ export class CountriesController {
   constructor(private readonly countriesService: CountriesService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get countries list' })
-  @ApiQuery({ 
-    name: 'search', 
-    required: false, 
-    description: 'Search countries by name (e.g., Egypt)' 
-  })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiOperation({ summary: 'Get all countries' })
+  @ApiResponse({
+    status: 200,
     description: 'List of countries retrieved successfully',
-    type: [CountryResponseDto]
+    type: [CountryDto],
   })
-  @ApiResponse({ 
-    status: 500, 
-    description: 'Internal server error' 
-  })
-  async getCountries(@Query('search') search?: string): Promise<CountryResponseDto[]> {
-    try {
-      return await this.countriesService.getCountries(search);
-    } catch (error) {
-      throw new HttpException(
-        error.message || 'Failed to fetch countries',
-        error.status || HttpStatus.INTERNAL_SERVER_ERROR
-      );
-    }
+  findAll(): CountryData[] {
+    return this.countriesService.findAll();
   }
 
-  @Get(':name')
-  @ApiOperation({ summary: 'Get country details by name' })
-  @ApiParam({ 
-    name: 'name', 
-    description: 'Country name (e.g., Egypt)' 
+  @Get(':slug')
+  @ApiOperation({ summary: 'Get country details by slug' })
+  @ApiParam({
+    name: 'slug',
+    description: 'Country slug (e.g., egypt, france, turkey)',
   })
-  @ApiResponse({ 
-    status: 200, 
+  @ApiResponse({
+    status: 200,
     description: 'Country details retrieved successfully',
-    type: CountryResponseDto
+    type: CountryDto,
   })
-  @ApiResponse({ 
-    status: 404, 
-    description: 'Country not found' 
+  @ApiResponse({
+    status: 404,
+    description: 'Country not found',
   })
-  @ApiResponse({ 
-    status: 500, 
-    description: 'Internal server error' 
-  })
-  async getCountryByName(@Param('name') name: string): Promise<any> {
-    try {
-      return await this.countriesService.getCountryByName(name);
-    } catch (error) {
-      if (error.status === 404) {
-        throw new HttpException(
-          error.message,
-          HttpStatus.NOT_FOUND
-        );
-      }
-      
-      throw new HttpException(
-        error.message || 'Failed to fetch country',
-        HttpStatus.INTERNAL_SERVER_ERROR
-      );
-    }
+  findOne(@Param('slug') slug: string): CountryData {
+    return this.countriesService.findOne(slug);
   }
 }

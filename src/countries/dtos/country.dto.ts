@@ -1,55 +1,102 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CurrencyDto {
-  @ApiProperty()
+export class CountryPlaceDto {
+  @ApiProperty({ example: 1 })
+  id: number;
+
+  @ApiProperty({ example: 'Pyramids of Giza' })
   name: string;
 
-  @ApiProperty()
-  symbol: string;
+  @ApiProperty({ example: 'country/egypt/places/place-1.jpg' })
+  image: string;
+
+  @ApiProperty({ example: 'https://en.wikipedia.org/wiki/Giza_pyramid_complex' })
+  link: string;
 }
 
-export class FlagsDto {
-  @ApiProperty()
-  png: string;
+export class CountryHotelDto {
+  @ApiProperty({ example: 1 })
+  id: number;
 
-  @ApiProperty()
-  svg: string;
+  @ApiProperty({ example: 4.8 })
+  rating: number;
 
-  @ApiProperty()
-  alt: string;
+  @ApiProperty({ example: '$250/night' })
+  price: string;
+
+  @ApiProperty({ example: 'https://www.fourseasons.com/cairo' })
+  link: string;
+
+  @ApiProperty({ example: 'Four Seasons Hotel Cairo' })
+  name: string;
+
+  @ApiProperty({ example: 'country/egypt/hotels/hotel-1.jpg' })
+  image: string;
+}
+
+export class CountryRestaurantDto {
+  @ApiProperty({ example: 1 })
+  id: number;
+
+  @ApiProperty({ example: 4 })
+  stars: number;
+
+  @ApiProperty({ example: 'Khan el-Khalili Restaurant' })
+  name: string;
+
+  @ApiProperty({ example: 'country/egypt/restaurants/restaurant-1.jpg' })
+  image: string;
+
+  @ApiProperty({ example: 'Khan el-Khalili, Cairo' })
+  location: string;
+
+  @ApiProperty({ example: 'Traditional Egyptian' })
+  kindOfFood: string;
+
+  @ApiProperty({ example: 'https://www.instagram.com/khanelkhalilirestaurant' })
+  instagram: string;
 }
 
 export class CountryDto {
+  @ApiProperty({ example: 1 })
+  id: number;
+
+  @ApiProperty({ example: 'egypt' })
+  slug: string;
+
   @ApiProperty({ example: 'Egypt' })
-  commonName: string;
+  title: string;
 
-  @ApiProperty({ example: 'Arab Republic of Egypt' })
-  officialName: string;
+  @ApiProperty({ example: 'Where ancient wonders meet modern magic' })
+  subtitle: string;
 
-  @ApiProperty({ example: ['Cairo'] })
-  capital: string[];
+  @ApiProperty({ example: 'from-amber-900/80 via-orange-900/60 to-transparent' })
+  overlay: string;
 
-  @ApiProperty({ example: 'Africa' })
-  region: string;
+  @ApiProperty({ example: '24°C' })
+  temperature: string;
 
-  @ApiProperty({ example: 'Northern Africa' })
-  subregion: string;
+  @ApiProperty({ example: 'Sunny' })
+  weather: string;
 
-  @ApiProperty({ example: 102332403 })
-  population: number;
+  @ApiProperty({ example: 'Cairo' })
+  city: string;
 
-  @ApiProperty({ type: FlagsDto })
-  flags: FlagsDto;
+  @ApiProperty({ example: 'EGP' })
+  currency: string;
 
-  @ApiProperty({ type: 'object', additionalProperties: { type: 'object' } })
-  currencies: Record<string, CurrencyDto>;
+  @ApiProperty({ example: ['Pyramids', 'Nile Cruise', 'Red Sea'] })
+  highlights: string[];
 
-  @ApiProperty({ example: { 'ara': 'Arabic' }, type: 'object', additionalProperties: { type: 'string' } })
-  languages: Record<string, string>;
+  @ApiProperty({ example: ['country/egypt/landmarks/landmark-1.jpg'] })
+  images: string[];
 
-  @ApiProperty({ example: ['UTC+02:00'] })
-  timezones: string[];
+  @ApiProperty({ type: [CountryPlaceDto] })
+  places: CountryPlaceDto[];
 
-  @ApiProperty({ example: ['ISR', 'LBY', 'SDN'] })
-  borders: string[];
+  @ApiProperty({ type: [CountryHotelDto] })
+  hotels: CountryHotelDto[];
+
+  @ApiProperty({ type: [CountryRestaurantDto] })
+  restaurants: CountryRestaurantDto[];
 }
