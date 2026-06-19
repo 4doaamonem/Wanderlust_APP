@@ -17,23 +17,13 @@ import { HotelsModule } from './hotels/hotels.module';
 import { PopularPlacesModule } from './popular-places/popular-places.module';
 import { PlansModule } from './plans/plans.module';
 import { LoggerModule } from './logger/logger.module';
+import { getDatabaseConfig } from './config/database.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST || 'localhost',
-      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
-      username: process.env.DB_USERNAME || 'root',
-      password: process.env.DB_PASSWORD || '',
-      database: process.env.DB_DATABASE || 'wanderlust_db',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-      retryAttempts: 3,
-      retryDelay: 3000,
-      logging: false,
-      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+    TypeOrmModule.forRootAsync({
+      useFactory: getDatabaseConfig,
     }),
     LoggerModule, // Global Logger Module
     UsersModule,
