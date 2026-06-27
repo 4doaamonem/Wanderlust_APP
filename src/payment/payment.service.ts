@@ -123,8 +123,8 @@ export class PaymentService {
    */
   getPlanPrice(planType: PlanType): number {
     const prices: Record<PlanType, number> = {
-      [PlanType.WEEKLY]: 5,
-      [PlanType.MONTHLY]: 10,
+      [PlanType.WEEKLY]: 10,
+      [PlanType.MONTHLY]: 20,
       [PlanType.FREE]: 0,
       [PlanType.YEARLY]: 99,
     };
