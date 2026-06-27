@@ -112,7 +112,7 @@ export class PaymentService {
    * @returns Mock payment URL
    */
   private generateMockPaymentUrl(sessionId: string): string {
-    return `https://wander-lust-5qdo.vercel.app/subscription/success?session=${sessionId}`;
+    return `https://wander-lust-5qdo.vercel.app/subscription/success?transactionId=${sessionId}`;
   }
 
   /**
