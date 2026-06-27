@@ -112,8 +112,7 @@ export class PaymentService {
    * @returns Mock payment URL
    */
   private generateMockPaymentUrl(sessionId: string): string {
-    // In real implementation, this would be the actual PayPal payment URL
-    return `https://mock-paypal.com/pay?session=${sessionId}`;
+    return `https://wander-lust-5qdo.vercel.app/subscription/success?session=${sessionId}`;
   }
 
   /**
